@@ -34,4 +34,9 @@ class Services extends InheritedWidget implements ServiceFactory {
   BatchIDGenerator batchIDGenerator() {
     return _serviceFactory.batchIDGenerator();
   }
+
+  @override
+  HarvestService harvestService() {
+    return _serviceFactory.harvestService();
+  }
 }

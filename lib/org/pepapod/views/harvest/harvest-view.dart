@@ -1,10 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_geo_poc/org/pepapod/model/harvest/harvest.dart';
 import 'package:flutter_geo_poc/org/pepapod/services/services-inherited.dart';
 import 'package:flutter_geo_poc/org/pepapod/views/harvest/bloc/builder/position-bloc-builder.dart';
 import 'package:flutter_geo_poc/org/pepapod/views/harvest/bloc/harvest-bloc.dart';
 import 'package:flutter_geo_poc/org/pepapod/views/harvest/bloc/harvest-events.dart';
+import 'package:flutter_geo_poc/org/pepapod/views/harvest/bloc/harvest-states.dart';
 import 'package:flutter_geo_poc/org/pepapod/views/harvest/widget/batch-id-widget.dart';
 import 'package:flutter_geo_poc/org/pepapod/views/harvest/widget/picture-widget.dart';
 import 'package:flutter_geo_poc/org/pepapod/widgets/camera-widget.dart';
@@ -118,8 +120,24 @@ class _HarvestViewState extends State<HarvestView> {
     return Center(
       child: RaisedButton(
         child: Text("Guardar"),
-        onPressed: () {},
+        onPressed: _saveHarvest,
       ),
     );
+  }
+
+  void _saveHarvest() async {
+    var harvestState = _harvestBloc.state;
+
+    if (harvestState is PositionAcquiredState) {
+      Harvest harvest = Harvest(
+        widget.batchId,
+        harvestState.position.latitude.toString(),
+        harvestState.position.longitude.toString(),
+        _imagePath,
+      );
+
+      await Services.of(context).harvestService().saveHarvest(harvest);
+    }
+    Navigator.of(context).pop();
   }
 }
