@@ -16,6 +16,6 @@ class DefaultPositionService implements PositionService {
 
   @override
   Future<Position> getCurrentPosition() {
-    return Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    return Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation);
   }
 }

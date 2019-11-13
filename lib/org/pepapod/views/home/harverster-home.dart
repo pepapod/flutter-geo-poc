@@ -3,6 +3,7 @@ import 'package:flutter_geo_poc/org/pepapod/model/harvest/harvest-pack.dart';
 import 'package:flutter_geo_poc/org/pepapod/model/harvest/harvest.dart';
 import 'package:flutter_geo_poc/org/pepapod/services/services-inherited.dart';
 import 'package:flutter_geo_poc/org/pepapod/views/harvest/harvest-view.dart';
+import 'package:flutter_geo_poc/org/pepapod/views/home/widget/harvest-card-widget.dart';
 import 'package:flutter_geo_poc/org/pepapod/widgets/future/future-widget.dart';
 
 class HarvesterHome extends StatelessWidget {
@@ -27,9 +28,7 @@ class HarvesterHome extends StatelessWidget {
           itemCount: harvests.length,
           itemBuilder: (context, index) {
             Harvest harvest = harvests[index].harvest;
-            return Card(
-              child: Text(harvest.batchId),
-            );
+            return HarvestCardWidget(harvest: harvest);
           },
         ),
       );
