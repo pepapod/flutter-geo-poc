@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_geo_poc/org/pepapod/model/harvest/harvest-pack.dart';
 import 'package:flutter_geo_poc/org/pepapod/model/harvest/harvest.dart';
 import 'package:flutter_geo_poc/org/pepapod/services/services-inherited.dart';
+import 'package:flutter_geo_poc/org/pepapod/views/harvest.dart';
 import 'package:flutter_geo_poc/org/pepapod/views/harvest/harvest-view.dart';
 import 'package:flutter_geo_poc/org/pepapod/views/home/widget/harvest-card-widget.dart';
 import 'package:flutter_geo_poc/org/pepapod/widgets/future/future-widget.dart';
@@ -49,7 +50,7 @@ class HarvesterHome extends StatelessWidget {
   }
 
   void newHarvest(BuildContext context) {
-    String batchId = Services.of(context).batchIDGenerator().generate();
-    Navigator.push(context, MaterialPageRoute(builder: (ctx) => HarvestView(batchId: batchId)));
+    //String batchId = Services.of(context).batchIDGenerator().generate();
+    Navigator.push(context, MaterialPageRoute(builder: (ctx) => HarvestEvent()));
   }
 }
